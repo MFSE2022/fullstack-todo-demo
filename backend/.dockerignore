@@ -1,0 +1,11 @@
+target
+.idea
+.vscode
+*.iml
+*.log
+.git
+.gitignore
+Dockerfile
+README.md
+../frontend
+../node_modules
