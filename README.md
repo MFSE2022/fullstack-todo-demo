@@ -24,7 +24,7 @@
 - Moderne, responsive Benutzeroberfläche
 - Deployment über Vercel & Render
 
-**Angular + Spring Boot + Auth0** 
+**Angular + Spring Boot + Auth0 + PostgreSQL** 
 
 ## Tech Stack
 
