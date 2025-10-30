@@ -1,6 +1,8 @@
 # Fullstack Todo Demo
 
-<img width="1023" height="806" alt="Bildschirmfoto 2025-10-30 um 13 58 57" src="https://github.com/user-attachments/assets/48156545-36c8-40a8-9c2f-0afeeee7d6fd" />
+<a href="https://fullstack-todo-demo.vercel.app">
+<img width="1023" height="806" alt="Demo" src="https://github.com/user-attachments/assets/48156545-36c8-40a8-9c2f-0afeeee7d6fd" />
+</a>
 
 # Link zum Ausprobieren
 
