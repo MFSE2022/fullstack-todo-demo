@@ -2,10 +2,6 @@ server:
   servlet:
     context-path: /api
 
-spring:
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: ${OAUTH_ISSUER_URI}
-          audience:  ${OAUTH_AUDIENCE}
+logging:
+  level:
+    org.springframework.security: INFO

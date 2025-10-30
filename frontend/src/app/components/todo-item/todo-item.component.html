@@ -1,0 +1,28 @@
+<div class="todo-item" [class.expanded]="isExpanded">
+  <input type="checkbox"
+    [checked]="completed()"
+         (change)="onCheckboxChange()"
+  />
+  <span class="title">{{ title() }}</span>
+
+  @if (!isExpanded) {
+    <span class="more"
+          (click)="onMoreClicked()"
+    >mehr</span>
+  } @else {
+    <span class="description">{{description()}}</span>
+    <span class="more"
+          (click)="onLessClicked()"
+    >weniger</span>
+  }
+  <span class="createdDate">erstellt: {{createdAt() | date:'dd.MM.yyyy'}}</span>
+  @if (dueDate()) {
+    <span class="date"> fällig: {{ dueDate() | date:'dd.MM.yyyy' }}</span>
+  }
+  <span class="edit"
+        (click)="onEditClicked()">bearbeiten</span>
+  <span class="remove"
+  (click)="onRemoveClicked()"
+  >löschen</span>
+
+</div>

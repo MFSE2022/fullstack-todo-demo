@@ -1,0 +1,29 @@
+@if (user | async; as user) {
+<div class="mx-auto w-full max-w-screen-lg px-4 sm:px-6 lg:px-8 py-6 ">
+    <div class="flex items-center justify-between">
+      <h1 class="text-3xl font-bold underline">Willkommen zurück, {{ user.name }}</h1>
+      <button class="btn btn-primary" (click)="navigateToAddTodo()">+ neues To-Do</button>
+    </div>
+  <br>
+    <h2>Check deine To-Do's heute:</h2>
+    <app-todo-list
+      [todos]="dailyTodos()"
+      (todoToggled)="toggleTodo($event)"
+      (todoRemoved)="removeTodo($event)"
+    />
+  <br>
+    <h2>... und denk an deine anderen To-Do's</h2>
+    <app-todo-list
+      [todos]="otherTodos()"
+      (todoToggled)="toggleTodo($event)"
+      (todoRemoved)="removeTodo($event)"
+    />
+    <br>
+    <h2>Gratulation, du hast {{countCompleted()}} To-Do's dieses Jahr erledigt!</h2>
+    <app-todo-list
+      [todos]="completedTodos()"
+      (todoToggled)="toggleTodo($event)"
+      (todoRemoved)="removeTodo($event)"/>
+    <pre>{{ todos | json }}</pre>
+</div>
+}

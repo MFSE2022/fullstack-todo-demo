@@ -1,0 +1,53 @@
+<div class="mx-auto w-full max-w-screen-lg px-4 sm:px-6 lg:px-8 py-6">
+  <div class="flex items-center justify-between">
+    <h1 class="text-3xl font-bold underline">To-Do bearbeiten:</h1>
+    <button class="btn btn-primary" (click)="navigateToHome()">← zurück</button>
+  </div>
+
+  <div class="form-card">
+    <form [formGroup]="todoForm" (ngSubmit)="onUpdate()">
+
+      <!-- Title -->
+      <div class="form-row">
+        <label>Titel:</label>
+        <input
+          type="text"
+          formControlName="title"
+          class="input-text"
+        />
+      </div>
+
+      <!-- Dates -->
+      <div class="form-row date-row">
+        <div class="date-field">
+          <label>Gültig bis:</label>
+          <input type="date" formControlName="dueUntil" class="input-date" />
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="form-row">
+        <label>Beschreibung:</label>
+        <textarea
+          formControlName="description"
+          rows="10"
+          class="input-textarea"
+        ></textarea>
+      </div>
+
+      <!-- Buttons -->
+      <div class="form-actions">
+        <button type="button" class="btn-discard" (click)="onDiscard()">
+          abbrechen
+        </button>
+        <button type="submit"
+                class="btn-save"
+                [class.valid]="todoForm.valid"
+                [disabled]="!todoForm.valid">
+          speichern
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>

@@ -1,0 +1,79 @@
+.todo-item {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 12px;
+  margin-top: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  min-height: 80px;
+}
+
+.todo-item.expanded {
+  max-height: 200px;
+  height: 100%;
+  transition: max-height 0.4s ease-in-out;
+
+}
+.date {
+  position: absolute;
+  bottom: 8px;
+  right: 20px;
+  font-size: 13px;
+  color: #999;
+}
+.createdDate {
+  position: absolute;
+  bottom: 5px;
+  left: 20px;
+  font-size: 13px;
+  color: #999;
+}
+
+.remove {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 13px;
+  color: crimson;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+}
+
+.more {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 13px;
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+  color: orange;
+  cursor: pointer;
+
+}
+
+.edit {
+  position: absolute;
+  top: 10px;
+  right: 90px;
+  font-size: 13px;
+  color: #7ab57f;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+}
+
+.description {
+  padding: 15px 0 15px 0;
+  transition: max-height 0.4s ease-in-out;
+  overflow: hidden;
+}

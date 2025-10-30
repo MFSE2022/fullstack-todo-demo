@@ -1,0 +1,14 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ["./src/**/*.{html,ts}"],
+  theme: {
+    extend: {
+      colors: {
+        brand: { 600: "#1e5aa6", 700: "#174a88" },
+      },
+      boxShadow: { soft: "0 10px 25px -10px rgb(0 0 0 / .15)" },
+      borderRadius: { xl2: "1rem" },
+    },
+  },
+  plugins: [],
+};

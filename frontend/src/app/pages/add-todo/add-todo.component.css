@@ -1,0 +1,133 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+h1 {
+  font-size: 32px;
+  padding-bottom: 16px;
+  margin: 0;
+}
+
+.btn-back {
+  background: #e0e0e0;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-back:hover {
+  background: #d0d0d0;
+}
+
+.form-card {
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-row {
+  margin-bottom: 24px;
+  display: flex;
+  align-items: flex-start;
+}
+
+label {
+  min-width: 120px;
+  font-size: 16px;
+  padding-top: 10px;
+}
+
+.input-text,
+.input-date,
+.input-textarea {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  background: #f0f0f0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.input-text::placeholder,
+.input-textarea::placeholder {
+  color: #999;
+}
+
+.date-row {
+  gap: 20px;
+}
+
+.date-field {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.date-field label {
+  min-width: auto;
+}
+
+.input-textarea {
+  resize: vertical;
+  min-height: 150px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.btn-discard,
+.btn-save {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-discard {
+  background: #e0e0e0;
+}
+
+.btn-discard:hover {
+  background: #d0d0d0;
+}
+
+.btn-save {
+  background: #90c695;
+  color: white;
+}
+
+.btn-save:hover:not(:disabled) {
+  background: #7ab57f;
+}
+
+.btn-save:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.btn-save.valid {
+  background: #4caf50;
+}
+
+.btn-save.valid:hover {
+  background: #45a049;
+  transform: translateY(-2px);
+}

@@ -1,0 +1,12 @@
+@for (todo of todos(); track todo.id) {
+  <app-todo-item
+    [id]="todo.id"
+    [title]="todo.title"
+    [dueDate]="todo.dueDate"
+    [completed]="todo.completed"
+    [description]="todo.description"
+    [createdAt]="todo.createdAt"
+    (toggle)="todoToggled.emit(todo.id)"
+    (remove)="todoRemoved.emit(todo.id)"
+    />
+}

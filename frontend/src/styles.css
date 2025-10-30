@@ -1,1 +1,33 @@
-/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+
+/* Design-Tokens (Farben, Radius, Shadow, Fokus) */
+@theme {
+  --color-brand-600: #1e5aa6;
+  --color-brand-700: #174a88;
+  --radius-btn: .625rem;         /* 10px */
+  --shadow-soft: 0 10px 25px -10px rgb(0 0 0 / .15);
+  --ring-brand: 0 0 0 3px color-mix(in oklab, var(--color-brand-600) 25%, transparent);
+}
+
+/* Grund-Button (Basis für alle Varianten) */
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2
+  font-medium text-sm leading-none
+  rounded-[var(--radius-btn)] px-4 py-2
+  transition-colors select-none
+  focus:outline-none focus-visible:ring-[var(--ring-brand)]
+  disabled:opacity-50 disabled:pointer-events-none;
+}
+
+/* Varianten */
+@utility btn-primary { @apply bg-brand-600 text-white hover:brightness-95; }
+@utility btn-outline { @apply bg-white text-gray-900 border border-gray-200 hover:bg-gray-100; }
+@utility btn-ghost   { @apply bg-transparent text-gray-700 hover:bg-gray-100; }
+@utility btn-danger  { @apply bg-red-600 text-white hover:bg-red-700; }
+
+/* Größen */
+@utility btn-sm { @apply px-3 py-1.5 text-xs; }
+@utility btn-lg { @apply px-5 py-3 text-base; }
+
+/* Optional Dark-Mode-Finetuning */
+@utility btn-outline-dark { @apply dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:hover:bg-gray-700; }
