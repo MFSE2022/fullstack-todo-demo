@@ -10,7 +10,11 @@
 
 👉 [https://fullstack-todo-demo.vercel.app](https://fullstack-todo-demo.vercel.app/)
 
-> Anmeldung mit Google, Facebook - Testnutzer auf Anfrage
+> Anmeldung mit Google, Facebook, Github oder Testnutzer
+
+- Email: `demo@fullstack-todo.dev`
+
+- Password: `DemoPassword123!`
 
 
 ## Features
