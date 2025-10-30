@@ -1,21 +1,24 @@
 # Fullstack Todo Demo
 
-<img width="478" height="268" alt="To-Do-Demo" src="https://github.com/user-attachments/assets/cf7b71ce-d87e-4ac7-a844-6aff382e9698" /><br>
+<img width="1023" height="806" alt="Bildschirmfoto 2025-10-30 um 13 58 57" src="https://github.com/user-attachments/assets/48156545-36c8-40a8-9c2f-0afeeee7d6fd" />
 
+# Link zum Ausprobieren
 
-**Angular + Spring Boot + Auth0** 
+**Anmelden:**  
 
-Ein kleines vollständiges Projekt zur Demonstration zeitgemäßer Fullstack-Entwicklung mit sicherer Authentifizierung, Deployment und CI/CD.
-
-# Live Demo
-
-**Frontend (Angular, Vercel):**  
 👉 [https://fullstack-todo-demo.vercel.app](https://fullstack-todo-demo.vercel.app/)
 
-> direkt mit einem Demo-Account einloggen:
+> Anmeldung mit Google, Facebook - Testnutzer auf Anfrage
 
- - **Backend (Spring Boot, Render)**  →  [https://fullstack-todo-demo.onrender.com/api/health](https://fullstack-todo-demo.onrender.com/api/health)
 
+## Features
+- OAuth 2.0 (Auth0)
+- CRUD Operationen für To-Do's
+- Tägliche Übersicht mit erledigten / offenen Aufgaben
+- Moderne, responsive Benutzeroberfläche
+- Deployment über Vercel & Render
+
+**Angular + Spring Boot + Auth0** 
 
 ## Tech Stack
 
@@ -47,9 +50,8 @@ Ein minimalistisches Figma-Konzept für das Frontend-Layout:
 <img width="639" height="963" alt="fullstack-todo-demo-home" src="https://github.com/user-attachments/assets/69de51d9-ff53-4771-9149-49f139f25a8b" />
 <img width="639" height="821" alt="fullstack-todo-demo-edit" src="https://github.com/user-attachments/assets/393b2de5-febb-4dd3-b073-62108982041f" />
 
-
 > Klare Struktur mit Fokus auf Usability
-> Responsive Design für Desktop & Mobile geplant
+> Responsive Design für Desktop & Mobile 
 
 Design erstellt in [**Figma**](https://www.figma.com/)  
 → umgesetzt in Angular 
@@ -117,19 +119,19 @@ npm start`
 | `/api/health` | GET  | Nein | Healthcheck |
 | `/api/todos` | GET  | Ja | Liste der Todos |
 | `/api/todos` | POST  | Ja | Neues Todo anlegen |
-
+| `/api/todos/{id}` | PUT  | Ja | Todo bearbeiten |
+| `/api/todos/{id}` | DELETE  | Ja | Todo löschen |
 ----------
 
 ## Ideen für Erweiterungen
+
 -   Suchfunktion
 
 -   Tags hinzufügen
+        
+-   Prioritäten vergeben
     
--   Refresh Token Flow
-    
--   User-spezifische Todos
-    
--   Role-based Access (Admin/User)
+-   Role-based Access (Gruppen)
     
 -   CI/CD mit GitHub Actions
     
