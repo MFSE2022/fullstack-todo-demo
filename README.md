@@ -4,13 +4,13 @@
 <img width="1023" height="806" alt="Demo" src="https://github.com/user-attachments/assets/48156545-36c8-40a8-9c2f-0afeeee7d6fd" />
 </a>
 
-# Link zum Ausprobieren
+# Live Demo
 
-**Anmelden:**  
+**Login options:**  
 
 👉 [https://fullstack-todo-demo.vercel.app](https://fullstack-todo-demo.vercel.app/)
 
-> Anmeldung mit Google, Facebook, Github oder Testnutzer
+> Google, Facebook, GitHub, or Test User
 
 - Email: `demo@fullstack-todo.dev`
 
@@ -19,10 +19,10 @@
 
 ## Features
 - OAuth 2.0 (Auth0)
-- CRUD Operationen für To-Do's
-- Tägliche Übersicht mit erledigten / offenen Aufgaben
-- Moderne, responsive Benutzeroberfläche
-- Deployment über Vercel & Render
+- CRUD operations for to-dos
+- Daily overview with completed / pending tasks
+- Modern, responsive user interface
+- Deployment via Vercel & Render
 
 **Angular + Spring Boot + Auth0 + PostgreSQL** 
 
@@ -49,35 +49,35 @@
     
 -   Dockerfile (Build Support)
 
-## UI / Design Konzept
+## UI / Design Concept
 
-Ein minimalistisches Figma-Konzept für das Frontend-Layout:
+A minimalistic Figma concept for the frontend layout:
 
 <img width="639" height="963" alt="fullstack-todo-demo-home" src="https://github.com/user-attachments/assets/69de51d9-ff53-4771-9149-49f139f25a8b" />
 <img width="639" height="821" alt="fullstack-todo-demo-edit" src="https://github.com/user-attachments/assets/393b2de5-febb-4dd3-b073-62108982041f" />
 
-> Klare Struktur mit Fokus auf Usability
-> Responsive Design für Desktop & Mobile 
+> Clean layout with a strong focus on usability
+> Fully responsive for desktop & mobile
 
-Design erstellt in [**Figma**](https://www.figma.com/)  
-→ umgesetzt in Angular 
+Design created in [**Figma**](https://www.figma.com/)  
+→ implemented in Angular
 
-## Authentifizierung
+## Authentication Flow
 
 **Flow:**
 
-1.  Nutzer klickt  **Login**  → Auth0 Hosted Login Page öffnet sich.
+1.  User clicks  **Login**  → Auth0 Hosted Login Page opens
     
-2.  Nach erfolgreichem Login → Redirect zurück zu Angular (`redirect_uri`).
+2.  After successful login → redirect back to Angular (`redirect_uri`).
     
-3.  Angular erhält Access Token (JWT) mit Audience  `https://fullstack-todo-demo`.
+3.  Angular receives an Access Token (JWT) with audience `https://fullstack-todo-demo`.
     
-4.  Token wird bei API-Requests (`/api/todos`) im Header  `Authorization: Bearer ...`  gesendet.
+4.  Token is sent with API requests (`/api/todos`) in the header:  `Authorization: Bearer ...` 
     
-5.  Spring Boot validiert das JWT über Auth0 Issuer URI & Audience.
+5.  Spring Boot validates the JWT using the Auth0 Issuer URI & Audience.
     
 
-## Projektstruktur
+## Project Structure
 
 ```
 fullstack-todo-demo/
@@ -99,14 +99,14 @@ fullstack-todo-demo/
 
 ----------
 
-## Lokales Setup
+## Local Setup
 
 ### 1. Backend
 
 `cd backend
 ./mvnw spring-boot:run -Dspring-boot.run.profiles=local` 
 
-→ läuft auf  [http://localhost:8080](http://localhost:8080/)
+→ runs on  [http://localhost:8080](http://localhost:8080/)
 
 ### 2. Frontend
 
@@ -114,7 +114,7 @@ fullstack-todo-demo/
 npm install
 npm start` 
 
-→ läuft auf  [http://localhost:4200](http://localhost:4200/)
+→ runs on  [http://localhost:4200](http://localhost:4200/)
 
 ----------
 
@@ -123,23 +123,23 @@ npm start`
 | Endpoint | Methode  | Auth | Beschreibung |
 |--|--|--|--|
 | `/api/health` | GET  | Nein | Healthcheck |
-| `/api/todos` | GET  | Ja | Liste der Todos |
-| `/api/todos` | POST  | Ja | Neues Todo anlegen |
-| `/api/todos/{id}` | PUT  | Ja | Todo bearbeiten |
-| `/api/todos/{id}` | DELETE  | Ja | Todo löschen |
+| `/api/todos` | GET  | Ja | Retrieve all todos |
+| `/api/todos` | POST  | Ja | Create new todo |
+| `/api/todos/{id}` | PUT  | Ja | Update todo |
+| `/api/todos/{id}` | DELETE  | Ja | Delete todo |
 ----------
 
-## Ideen für Erweiterungen
+## Ideas for Future Improvements
 
--   Suchfunktion
+-   Search functionality
 
--   Tags hinzufügen
+-   Add tags
         
--   Prioritäten vergeben
+-   Add priority levels
     
--   Role-based Access (Gruppen)
+-   Role-based access (groups)
     
--   CI/CD mit GitHub Actions
+-   CI/CD via GitHub Actions
     
 
 ----------
