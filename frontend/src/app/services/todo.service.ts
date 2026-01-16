@@ -21,7 +21,7 @@ export interface TodoService {
 })
 export class TodoService {
   private http = inject(HttpClient);
-  private apiUrl = `${environment.apiUrl}/todos`;
+  private apiUrl = `${environment.apiBase}/api/todos`;
 
   getTodoById(id: number): Observable<Todo> {
     return this.http.get<Todo>(`${this.apiUrl}/${id}`);

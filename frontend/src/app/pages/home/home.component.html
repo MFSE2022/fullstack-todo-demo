@@ -1,29 +1,121 @@
 @if (user | async; as user) {
-<div class="mx-auto w-full max-w-screen-lg px-4 sm:px-6 lg:px-8 py-6 ">
-    <div class="flex items-center justify-between">
-      <h1 class="text-3xl font-bold underline">Willkommen zurück, {{ user.name }}</h1>
-      <button class="btn btn-primary" (click)="navigateToAddTodo()">+ neues To-Do</button>
+<div class="mx-auto w-full max-w-screen-xl px-4 sm:px-6 lg:px-8 py-8">
+
+  <!-- Header -->
+  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+    <div>
+      <h1 class="text-2xl font-semibold text-slate-800">Dashboard</h1>
+      <p class="text-slate-500 mt-1">Willkommen zurück, {{ user.name }}</p>
     </div>
-  <br>
-    <h2>Check deine To-Do's heute:</h2>
-    <app-todo-list
-      [todos]="dailyTodos()"
-      (todoToggled)="toggleTodo($event)"
-      (todoRemoved)="removeTodo($event)"
-    />
-  <br>
-    <h2>... und denk an deine anderen To-Do's</h2>
-    <app-todo-list
-      [todos]="otherTodos()"
-      (todoToggled)="toggleTodo($event)"
-      (todoRemoved)="removeTodo($event)"
-    />
-    <br>
-    <h2>Gratulation, du hast {{countCompleted()}} To-Do's dieses Jahr erledigt!</h2>
-    <app-todo-list
-      [todos]="completedTodos()"
-      (todoToggled)="toggleTodo($event)"
-      (todoRemoved)="removeTodo($event)"/>
-    <pre>{{ todos | json }}</pre>
+    <button class="inline-flex items-center gap-2 px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition-colors font-medium text-sm shadow-sm" (click)="navigateToAddTodo()">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+      Neue Aufgabe
+    </button>
+  </div>
+
+  <!-- Stats Cards -->
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+    <div class="bg-white rounded-xl p-5 shadow-sm border border-slate-200">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center">
+          <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <div>
+          <p class="text-2xl font-semibold text-slate-800">{{ dailyTodos().length }}</p>
+          <p class="text-sm text-slate-500">Heute fällig</p>
+        </div>
+      </div>
+    </div>
+    <div class="bg-white rounded-xl p-5 shadow-sm border border-slate-200">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+          <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+        </div>
+        <div>
+          <p class="text-2xl font-semibold text-slate-800">{{ otherTodos().length }}</p>
+          <p class="text-sm text-slate-500">Offen</p>
+        </div>
+      </div>
+    </div>
+    <div class="bg-white rounded-xl p-5 shadow-sm border border-slate-200">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center">
+          <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <div>
+          <p class="text-2xl font-semibold text-slate-800">{{ countCompleted() }}</p>
+          <p class="text-sm text-slate-500">Erledigt</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Todo Sections -->
+  <div class="space-y-6">
+    @if (dailyTodos().length > 0) {
+      <section class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+        <div class="px-5 py-4 border-b border-slate-100 bg-slate-50">
+          <h2 class="font-medium text-slate-700 flex items-center gap-2">
+            <span class="w-2 h-2 bg-amber-500 rounded-full"></span>
+            Heute fällig
+          </h2>
+        </div>
+        <div class="p-4">
+          <app-todo-list
+            [todos]="dailyTodos()"
+            (todoToggled)="toggleTodo($event)"
+            (todoRemoved)="removeTodo($event)"
+          />
+        </div>
+      </section>
+    }
+
+    @if (otherTodos().length > 0) {
+      <section class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+        <div class="px-5 py-4 border-b border-slate-100 bg-slate-50">
+          <h2 class="font-medium text-slate-700 flex items-center gap-2">
+            <span class="w-2 h-2 bg-blue-500 rounded-full"></span>
+            Weitere Aufgaben
+          </h2>
+        </div>
+        <div class="p-4">
+          <app-todo-list
+            [todos]="otherTodos()"
+            (todoToggled)="toggleTodo($event)"
+            (todoRemoved)="removeTodo($event)"
+          />
+        </div>
+      </section>
+    }
+
+    @if (completedTodos().length > 0) {
+      <section class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+        <div class="px-5 py-4 border-b border-slate-100 bg-slate-50">
+          <h2 class="font-medium text-slate-700 flex items-center gap-2">
+            <span class="w-2 h-2 bg-emerald-500 rounded-full"></span>
+            Erledigt
+          </h2>
+        </div>
+        <div class="p-4">
+          <app-todo-list
+            [todos]="completedTodos()"
+            (todoToggled)="toggleTodo($event)"
+            (todoRemoved)="removeTodo($event)"
+          />
+        </div>
+      </section>
+    }
+
+    @if (dailyTodos().length === 0 && otherTodos().length === 0 && completedTodos().length === 0) {
+      <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-12 text-center">
+        <div class="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg class="w-8 h-8 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+        </div>
+        <p class="text-slate-500">Keine Aufgaben vorhanden</p>
+        <p class="text-slate-400 text-sm mt-1">Erstelle deine erste Aufgabe</p>
+      </div>
+    }
+  </div>
+
 </div>
 }

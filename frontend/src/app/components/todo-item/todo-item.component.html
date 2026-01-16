@@ -1,28 +1,37 @@
-<div class="todo-item" [class.expanded]="isExpanded">
-  <input type="checkbox"
+<div class="group flex items-start gap-3 p-4 bg-slate-50 hover:bg-slate-100 rounded-lg transition-colors" [class.opacity-60]="completed()">
+  <input
+    type="checkbox"
     [checked]="completed()"
-         (change)="onCheckboxChange()"
+    (change)="onCheckboxChange()"
+    class="mt-1 w-4 h-4 rounded border-slate-300 text-emerald-600 focus:ring-emerald-500 cursor-pointer"
   />
-  <span class="title">{{ title() }}</span>
 
-  @if (!isExpanded) {
-    <span class="more"
-          (click)="onMoreClicked()"
-    >mehr</span>
-  } @else {
-    <span class="description">{{description()}}</span>
-    <span class="more"
-          (click)="onLessClicked()"
-    >weniger</span>
-  }
-  <span class="createdDate">erstellt: {{createdAt() | date:'dd.MM.yyyy'}}</span>
-  @if (dueDate()) {
-    <span class="date"> fällig: {{ dueDate() | date:'dd.MM.yyyy' }}</span>
-  }
-  <span class="edit"
-        (click)="onEditClicked()">bearbeiten</span>
-  <span class="remove"
-  (click)="onRemoveClicked()"
-  >löschen</span>
+  <div class="flex-1 min-w-0">
+    <div class="flex items-start justify-between gap-2">
+      <span class="font-medium text-slate-800" [class.line-through]="completed()">{{ title() }}</span>
+      <div class="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+        <button (click)="onEditClicked()" class="text-xs text-slate-500 hover:text-slate-700">Bearbeiten</button>
+        <button (click)="onRemoveClicked()" class="text-xs text-red-500 hover:text-red-700">Löschen</button>
+      </div>
+    </div>
 
+    @if (description() && isExpanded) {
+      <p class="mt-2 text-sm text-slate-600">{{ description() }}</p>
+    }
+
+    <div class="mt-2 flex items-center gap-4 text-xs text-slate-400">
+      @if (dueDate()) {
+        <span class="flex items-center gap-1">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          {{ dueDate() | date:'dd.MM.yyyy' }}
+        </span>
+      }
+      <span>Erstellt: {{ createdAt() | date:'dd.MM.yyyy' }}</span>
+      @if (description()) {
+        <button (click)="isExpanded ? onLessClicked() : onMoreClicked()" class="text-slate-500 hover:text-slate-700 underline">
+          {{ isExpanded ? 'weniger' : 'mehr' }}
+        </button>
+      }
+    </div>
+  </div>
 </div>

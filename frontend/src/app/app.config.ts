@@ -22,6 +22,7 @@ export const appConfig: ApplicationConfig = {
       },
       httpInterceptor: {
         allowedList: [
+          { uri: '/api/*' },
           { uri: 'http://localhost:8080/api/*' },
           { uri: 'https://fullstack-todo-demo.onrender.com/*' },
         ],
