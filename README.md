@@ -1,146 +1,134 @@
-# Fullstack Todo Demo
+# TaskManager - Fullstack Todo Demo
 
-<a href="https://fullstack-todo-demo.vercel.app">
-<img width="1023" height="806" alt="Demo" src="https://github.com/user-attachments/assets/48156545-36c8-40a8-9c2f-0afeeee7d6fd" />
-</a>
+![Angular](https://img.shields.io/badge/Angular-20-DD0031?logo=angular)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5-6DB33F?logo=springboot)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-4169E1?logo=postgresql&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker&logoColor=white)
+![Auth0](https://img.shields.io/badge/Auth0-OAuth2-EB5424?logo=auth0&logoColor=white)
 
-# Live Demo
+Eine moderne Fullstack-Anwendung zur Aufgabenverwaltung mit Angular Frontend, Spring Boot Backend und OAuth2-Authentifizierung.
 
-**Login options:**  
+## Live Demo
 
-👉 [https://fullstack-todo-demo.vercel.app](https://fullstack-todo-demo.vercel.app/)
+**[https://fullstack-todo-demo.vercel.app](https://fullstack-todo-demo.vercel.app/)**
 
-> Google, Facebook, GitHub, or Test User
-
+Login mit Google, GitHub oder Test-Account:
 - Email: `demo@fullstack-todo.dev`
-
 - Password: `DemoPassword123!`
 
-
-## Features
-- OAuth 2.0 (Auth0)
-- CRUD operations for to-dos
-- Daily overview with completed / pending tasks
-- Modern, responsive user interface
-- Deployment via Vercel & Render
-
-**Angular + Spring Boot + Auth0 + PostgreSQL** 
+---
 
 ## Tech Stack
 
-### Frontend
+| Layer | Technologie |
+|-------|------------|
+| **Frontend** | Angular 20, Tailwind CSS, Auth0 SDK |
+| **Backend** | Spring Boot 3, Spring Security, JPA/Hibernate |
+| **Datenbank** | PostgreSQL (Prod), H2 (Dev) |
+| **Auth** | OAuth 2.0 / JWT via Auth0 |
+| **Deployment** | Vercel (Frontend), Render (Backend), Docker |
 
--   Angular 20
-    
--   Auth0 Angular SDK
-    
--   Vercel (Deployment)
-    
+---
 
-### Backend
+## Features
 
--   [Spring Boot 3](https://spring.io/projects/spring-boot)
-    
--   Spring Security (JWT Resource Server)
-    
--   Auth0 (JWT Validation)
-    
--   Render (Deployment)
-    
--   Dockerfile (Build Support)
+- OAuth 2.0 Authentifizierung (Google, GitHub, Email)
+- Dashboard mit Statistik-Übersicht
+- CRUD-Operationen für Aufgaben
+- Kategorisierung: Heute fällig / Offen / Erledigt
+- Responsive Design
+- JWT-basierte API-Absicherung
 
-## UI / Design Concept
+---
 
-A minimalistic Figma concept for the frontend layout:
+## Architektur
 
-<img width="639" height="963" alt="fullstack-todo-demo-home" src="https://github.com/user-attachments/assets/69de51d9-ff53-4771-9149-49f139f25a8b" />
-<img width="639" height="821" alt="fullstack-todo-demo-edit" src="https://github.com/user-attachments/assets/393b2de5-febb-4dd3-b073-62108982041f" />
+```
+┌─────────────────┐      ┌─────────────────┐      ┌─────────────────┐
+│     Angular     │ ───► │   Spring Boot   │ ───► │   PostgreSQL    │
+│   (Vercel)      │ JWT  │   (Render)      │      │                 │
+└─────────────────┘      └─────────────────┘      └─────────────────┘
+         │                        │
+         └────────┬───────────────┘
+                  ▼
+           ┌─────────────┐
+           │    Auth0    │
+           │   (OAuth)   │
+           └─────────────┘
+```
 
-> Clean layout with a strong focus on usability
-> Fully responsive for desktop & mobile
+---
 
-Design created in [**Figma**](https://www.figma.com/)  
-→ implemented in Angular
+## API Endpoints
 
-## Authentication Flow
+| Endpoint | Method | Auth | Beschreibung |
+|----------|--------|------|--------------|
+| `/api/health` | GET | - | Health Check |
+| `/api/todos` | GET | JWT | Alle Todos abrufen |
+| `/api/todos` | POST | JWT | Neues Todo erstellen |
+| `/api/todos/{id}` | PUT | JWT | Todo aktualisieren |
+| `/api/todos/{id}` | DELETE | JWT | Todo löschen |
 
-**Flow:**
+---
 
-1.  User clicks  **Login**  → Auth0 Hosted Login Page opens
-    
-2.  After successful login → redirect back to Angular (`redirect_uri`).
-    
-3.  Angular receives an Access Token (JWT) with audience `https://fullstack-todo-demo`.
-    
-4.  Token is sent with API requests (`/api/todos`) in the header:  `Authorization: Bearer ...` 
-    
-5.  Spring Boot validates the JWT using the Auth0 Issuer URI & Audience.
-    
+## Lokale Entwicklung
 
-## Project Structure
+### Voraussetzungen
+- Java 17+
+- Node.js 18+
+- Maven
+
+### Backend starten
+```bash
+cd backend
+./mvnw spring-boot:run -Dspring-boot.run.profiles=local
+```
+→ http://localhost:8080/api
+
+### Frontend starten
+```bash
+cd frontend
+npm install
+npm start
+```
+→ http://localhost:4200
+
+---
+
+## Projektstruktur
 
 ```
 fullstack-todo-demo/
+├── frontend/                 # Angular SPA
+│   ├── src/app/
+│   │   ├── components/       # Wiederverwendbare UI-Komponenten
+│   │   ├── pages/            # Seiten (Home, Add, Edit)
+│   │   └── services/         # API Service
+│   └── proxy.conf.json       # Dev-Proxy Konfiguration
 │
-├── frontend/          # Angular App (Vercel)    
-    ├── src/app/
-│   ├── proxy.conf.json
-│   ├── scripts/generate-env.mjs
-│   └── ...
-│
-└── backend/           # Spring Boot App (Render) 
-    ├── src/main/java/...
-    ├── src/main/resources/
-    │   ├── application.yml
-    │   ├── application-local.yml
-    │   └── application-prod.yml
-    └── Dockerfile
-``` 
+└── backend/                  # Spring Boot REST API
+    ├── src/main/java/
+    │   ├── controller/       # REST Controller
+    │   ├── service/          # Business Logic
+    │   ├── model/            # JPA Entities
+    │   └── config/           # Security Config
+    ├── Dockerfile
+    └── compose.yaml
+```
 
-----------
+---
 
-## Local Setup
+## Deployment
 
-### 1. Backend
+**Frontend:** Automatisches Deployment via Vercel bei Push auf `main`
 
-`cd backend
-./mvnw spring-boot:run -Dspring-boot.run.profiles=local` 
+**Backend:** Docker-Image wird auf Render deployed
 
-→ runs on  [http://localhost:8080](http://localhost:8080/)
+```dockerfile
+# Multi-stage build für optimierte Image-Größe
+FROM maven:3.9-eclipse-temurin-21 AS build
+# ... build stage
 
-### 2. Frontend
-
-`cd frontend
-npm install
-npm start` 
-
-→ runs on  [http://localhost:4200](http://localhost:4200/)
-
-----------
-
-## Beispiel-Endpunkte
-
-| Endpoint | Methode  | Auth | Beschreibung |
-|--|--|--|--|
-| `/api/health` | GET  | Nein | Healthcheck |
-| `/api/todos` | GET  | Ja | Retrieve all todos |
-| `/api/todos` | POST  | Ja | Create new todo |
-| `/api/todos/{id}` | PUT  | Ja | Update todo |
-| `/api/todos/{id}` | DELETE  | Ja | Delete todo |
-----------
-
-## Ideas for Future Improvements
-
--   Search functionality
-
--   Add tags
-        
--   Add priority levels
-    
--   Role-based access (groups)
-    
--   CI/CD via GitHub Actions
-    
-
-----------
-
+FROM eclipse-temurin:21-jre-alpine AS runtime
+# ... runtime stage mit non-root user
+```
