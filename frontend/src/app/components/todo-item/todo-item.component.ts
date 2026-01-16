@@ -24,17 +24,13 @@ export class TodoItemComponent {
   router = inject(Router);
 
   onCheckboxChange() {
-    console.log('todo-item: Checkbox geklickt!', this.title());
     this.toggle.emit();
   }
 
   onRemoveClicked() {
-    console.log('todo-item: remove geklickt!', this.title());
-    const confirmation = window.confirm(`Willst du wirklich folgendes To-Do löschen? : "${this.title()}"`);
-    if (confirmation) {
+    const confirmed = window.confirm(`"${this.title()}" wirklich löschen?`);
+    if (confirmed) {
       this.remove.emit();
-    } else {
-      console.log('TodoItem not removed');
     }
   }
 

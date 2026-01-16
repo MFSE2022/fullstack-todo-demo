@@ -1,20 +1,12 @@
-
-import {Component, computed, inject, signal} from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
-import {AsyncPipe, JsonPipe} from "@angular/common";
-import {TodoItemComponent} from "./components/todo-item/todo-item.component";
-import {Todo, TodoListComponent} from "./components/todo-list/todo-list.component";
+import { AsyncPipe } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  imports: [
-    JsonPipe,
-    AsyncPipe,
-    TodoListComponent,
-    RouterOutlet,
-  ]
+  imports: [AsyncPipe, RouterOutlet]
 })
 export class AppComponent {
   auth = inject(AuthService);

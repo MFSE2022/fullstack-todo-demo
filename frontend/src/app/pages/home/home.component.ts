@@ -1,17 +1,13 @@
-import {Component, computed, inject, signal} from '@angular/core';
-import {Todo, TodoListComponent} from "../../components/todo-list/todo-list.component";
-import {AsyncPipe, JsonPipe} from "@angular/common";
-import {AuthService} from "@auth0/auth0-angular";
-import {Router} from "@angular/router";
-import {TodoService} from "../../services/todo.service";
+import { Component, computed, inject, signal } from '@angular/core';
+import { Todo, TodoListComponent } from '../../components/todo-list/todo-list.component';
+import { AsyncPipe } from '@angular/common';
+import { AuthService } from '@auth0/auth0-angular';
+import { Router } from '@angular/router';
+import { TodoService } from '../../services/todo.service';
 
 @Component({
   selector: 'app-home',
-  imports: [
-    AsyncPipe,
-    JsonPipe,
-    TodoListComponent
-  ],
+  imports: [AsyncPipe, TodoListComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -32,11 +28,8 @@ export class HomeComponent {
 
   loadTodos() {
     this.todoService.getAllTodos().subscribe({
-      next: (todos) => {
-        this.todos.set(todos);
-        console.log(todos);
-      },
-      error: (err) => console.error(err)
+      next: (todos) => this.todos.set(todos),
+      error: (err) => console.error('Failed to load todos:', err)
     });
   }
 
@@ -75,7 +68,6 @@ export class HomeComponent {
 
     this.todoService.updateTodo(id, { ...todo, completed: !todo.completed }).subscribe({
       next: (updatedTodo) => {
-        console.log(updatedTodo);
         this.todos.update(todos =>
           todos.map(t => t.id === id ? updatedTodo : t)
         );
@@ -103,12 +95,10 @@ export class HomeComponent {
     this.todoService.removeTodo(id).subscribe({
       next: () => {
         this.todos.update(todos =>
-        todos.filter(todo => todo.id !== id)
+          todos.filter(todo => todo.id !== id)
         );
       },
-      error: (err) => {
-        console.log(err);
-      }
+      error: (err) => console.error('Failed to remove todo:', err)
     })
   }
 
