@@ -16,6 +16,8 @@ export class HomeComponent {
   auth = inject(AuthService);
   todoService = new TodoService();
   user = this.auth.user$;
+  isAuthenticated = this.auth.isAuthenticated$;
+  isLoading = this.auth.isLoading$;
   todos = signal<Todo[]>([])
   today = new Date().toISOString().split('T')[0];
   countCompleted = computed(() =>
@@ -82,6 +84,10 @@ export class HomeComponent {
   }
   navigateToAddTodo() {
     this.router.navigate(['/add-todo']);
+  }
+
+  login() {
+    this.auth.loginWithRedirect();
   }
 
   removeTodo(id: number) {

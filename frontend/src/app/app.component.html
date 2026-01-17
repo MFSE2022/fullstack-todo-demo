@@ -16,7 +16,5 @@
 </nav>
 
 <main class="min-h-screen bg-slate-100">
-  @if (auth.user$ | async; as user) {
-    <router-outlet />
-  }
+  <router-outlet />
 </main>
