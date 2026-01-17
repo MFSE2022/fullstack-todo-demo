@@ -12,9 +12,9 @@ Eine moderne Fullstack-Anwendung zur Aufgabenverwaltung mit Angular Frontend, Sp
 
 **[https://fullstack-todo-demo.vercel.app](https://fullstack-todo-demo.vercel.app/)**
 
-Login mit Google, GitHub oder Test-Account:
-- Email: `demo@fullstack-todo.dev`
-- Password: `DemoPassword123!`
+Demo-Zugang:
+- Email: `demo@test.at`
+- Password: `Passwort123!`
 
 ---
 

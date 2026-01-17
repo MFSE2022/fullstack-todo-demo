@@ -1,11 +1,16 @@
-@if (user | async; as user) {
+@if (isLoading | async) {
+  <!-- Loading -->
+  <div class="min-h-[calc(100vh-64px)] flex items-center justify-center">
+    <div class="text-slate-400">Laden...</div>
+  </div>
+} @else if (isAuthenticated | async) {
 <div class="mx-auto w-full max-w-screen-xl px-4 sm:px-6 lg:px-8 py-8">
 
   <!-- Header -->
   <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
     <div>
       <h1 class="text-2xl font-semibold text-slate-800">Dashboard</h1>
-      <p class="text-slate-500 mt-1">Willkommen zurück, {{ user.name }}</p>
+      <p class="text-slate-500 mt-1">Willkommen zurück</p>
     </div>
     <button class="inline-flex items-center gap-2 px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition-colors font-medium text-sm shadow-sm" (click)="navigateToAddTodo()">
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
@@ -117,5 +122,51 @@
     }
   </div>
 
+</div>
+} @else {
+<!-- Landing Page für nicht eingeloggte User -->
+<div class="min-h-[calc(100vh-64px)] flex items-center justify-center px-4">
+  <div class="max-w-2xl text-center">
+    <!-- Hero -->
+    <div class="mb-8">
+      <div class="w-20 h-20 bg-emerald-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+        <svg class="w-10 h-10 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+        </svg>
+      </div>
+      <h1 class="text-4xl font-bold text-slate-800 mb-4">Aufgaben einfach verwalten</h1>
+      <p class="text-lg text-slate-600 mb-8">Behalte den Überblick über deine Aufgaben mit einem übersichtlichen Dashboard, Fälligkeitsdaten und Statusverfolgung.</p>
+      <button class="inline-flex items-center gap-2 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition-colors font-medium shadow-lg shadow-emerald-200" (click)="login()">
+        Jetzt starten
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+      </button>
+      <p class="text-sm text-slate-400 mt-8">Demo-Zugang: <span class="text-slate-500">demo&#64;test.at</span> / <span class="text-slate-500">Passwort123!</span></p>
+    </div>
+
+    <!-- Features -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-12">
+      <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200 text-center">
+        <div class="w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center mb-4 mx-auto">
+          <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <h3 class="font-semibold text-slate-800 mb-2">Fälligkeitsdaten</h3>
+        <p class="text-sm text-slate-500">Verpasse keine Deadline mehr</p>
+      </div>
+      <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200 text-center">
+        <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mb-4 mx-auto">
+          <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
+        </div>
+        <h3 class="font-semibold text-slate-800 mb-2">Übersicht</h3>
+        <p class="text-sm text-slate-500">Alle Aufgaben auf einen Blick</p>
+      </div>
+      <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200 text-center">
+        <div class="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center mb-4 mx-auto">
+          <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <h3 class="font-semibold text-slate-800 mb-2">Fortschritt</h3>
+        <p class="text-sm text-slate-500">Verfolge erledigte Tasks</p>
+      </div>
+    </div>
+  </div>
 </div>
 }
