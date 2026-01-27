@@ -6,5 +6,5 @@ export const environment = {
     clientId: 'duB9aUkW5br3T3bqWKe1cCteJTk6aEdc',
     audience: 'https://todo-api'
   },
-  apiBase: ''
+  apiBase: 'https://fullstack-todo-demo.onrender.com'
 } as const;
